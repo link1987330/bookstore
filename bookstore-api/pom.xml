@@ -12,6 +12,7 @@
         <module>bookstore-api-book</module>
         <module>bookstore-api-remote</module>
         <module>bookstore-api-user</module>
+        <module>bookstore-api-order</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -7,8 +7,13 @@ import com.linkun.api.book.dto.BookDto;
 import com.linkun.api.book.exception.BookException;
 import com.linkun.book.model.Book;
 import com.linkun.api.book.service.IBookService;
+
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+
 import com.linkun.utils.NumberUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,6 +92,14 @@ public class BookRemoteService implements IBookRemoteService {
             return null;
         }
         return bookService.getByName(name);
+    }
+
+    @Override
+    public List<Book> listByIds(List<Long> bookIds) {
+        if (CollectionUtils.isEmpty(bookIds)) {
+            return Collections.emptyList();
+        }
+        return bookService.listByIds(bookIds);
     }
 
 
