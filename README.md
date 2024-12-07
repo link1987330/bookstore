@@ -6,3 +6,5 @@
 三、bookstore-base、model、bookstore-api-remote做为公共的基础模块，每个项目都需要引用它们。其中bookstore-api-remote为app和api之间远程接口调用的接口类封装，app层可通过它快速调用api层接口。
 
 四、tools中为快速生成代码的工具包，可通过表直接快速生成api层基础代码。
+
+五、jar包版本控制应该在根目录的pom.xml文件中通过dependencyManagement来控制，以防止jar包版本冲突，目前为了快速实现并未按规范严格执行。
