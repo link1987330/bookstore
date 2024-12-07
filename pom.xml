@@ -1,0 +1,179 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.linkun</groupId>
+    <artifactId>bookstore</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>bookstore-api</module>
+        <module>bookstore-app</module>
+        <module>model</module>
+        <module>bookstore-base</module>
+    </modules>
+    <name>bookstore Tapestry 5 Application</name>
+    <packaging>pom</packaging>
+    <properties>
+        <javax.servlet.version>2.5</javax.servlet.version>
+        <!-- base-->
+        <java.version>1.8</java.version>
+        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+
+        <!--swagger-->
+        <swagger.version>1.5.22</swagger.version>
+        <knife4j.version>2.0.8</knife4j.version>
+
+        <!--dubbo-->
+        <dubbo.version>2.7.3</dubbo.version>
+        <curator.version>2.12.0</curator.version>
+
+        <!--mybatis-->
+        <mybatis-plus.version>3.4.3</mybatis-plus.version>
+        <dynamic.version>3.4.0</dynamic.version>
+        <mybatis-spring-boot.version>2.0.0</mybatis-spring-boot.version>
+        <mybatis.version>3.5.7</mybatis.version>
+        <mybatis-spring.version>2.0.6</mybatis-spring.version>
+
+        <!--中间件-->
+        <redis.version>2.9.0</redis.version>
+
+        <!--tomcat-->
+        <javax.servlet.version>2.5</javax.servlet.version>
+
+        <!--other-->
+        <commons-collections4.version>4.1</commons-collections4.version>
+    </properties>
+    <repositories>
+        <repository>
+            <id>apache-staging</id>
+            <url>https://repository.apache.org/content/repositories/staging/</url>
+        </repository>
+    </repositories>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${javax.servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>6.0.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>3.4.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>2.11.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.1.0.Final</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>1.18.22</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-test</artifactId>-->
+            <!--<scope>test</scope>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>asm</artifactId>-->
+                    <!--<groupId>org.ow2.asm</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+    </dependencies>
+    <build>
+        <plugins>
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-deploy-plugin</artifactId>-->
+            <!--                <version>2.8.2</version>-->
+            <!--                <configuration>-->
+            <!--                    <skip>true</skip>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+                <version>3.8.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+                <version>2.21.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <webResources>
+                        <!--<resource>-->
+                        <!--&lt;!&ndash; 使用dev/test/uat的配置覆盖prod下的配置 &ndash;&gt;-->
+                        <!--<directory>config/${package.environment}</directory>-->
+                        <!--<targetPath>WEB-INF/classes</targetPath>-->
+                        <!--<filtering>true</filtering>-->
+                        <!--</resource>-->
+                        <!--<resource>-->
+                        <!--&lt;!&ndash; 优先用prod下的配置 &ndash;&gt;-->
+                        <!--<directory>config/prod</directory>-->
+                        <!--<targetPath>WEB-INF/classes</targetPath>-->
+                        <!--<filtering>true</filtering>-->
+                        <!--</resource>-->
+                    </webResources>
+                </configuration>
+                <version>2.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <version>3.0.1</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

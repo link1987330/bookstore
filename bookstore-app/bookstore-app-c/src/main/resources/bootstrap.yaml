@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: bookstore-app-c
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://dphzmy-j9plohtrbtu3hmen-pub.proxy.dms.aliyuncs.com:3306/bookstore?autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: kIfE9BDHUBKSk9lGgruxQ9Q4
+    password: s3XAPWO0gYEKr3Yh1RZo6EAhHSpPNL
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      # 连接池最小空闲连接数
+      minimum-idle: 5
+      # 连接池允许的最大连接数
+      maximum-pool-size: 10
+      # 等待连接池分配连接的最大时长（毫秒）
+      connection-timeout: 30000

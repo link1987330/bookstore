@@ -1,0 +1,48 @@
+#===============================swagger配置 begin===========================
+#knife4j:
+#  # 开启增强配置
+#  enable: true
+#  # 开启生产环境屏蔽,如果为true。则访问不了
+#  production: true
+#===============================swagger配置 end=============================
+
+
+
+#===============================dubbo配置 begin=============================
+#dubbo:
+#  application:
+#    name: bookstore-app-c
+#    logger: slf4j
+#  registry:
+#    address: zookeeper://zookeeper3.shidc.com:2181?backup=zookeeper2.shidc.com:2181,zookeeper1.shidc.com:2181
+#    register: true
+#    file: /data/dubbo/linglie-app-web-hr/dubbo.cache
+#  consumer:
+#    check: false
+#    loadbalance: roundrobin
+#    retries: 0
+#    filter: dubboValidationFilter
+#  monitor:
+#    protocol: registry
+#  metadata-report:
+#    address: zookeeper://zookeeper3.shidc.com:2181?backup=zookeeper2.shidc.com:2181,zookeeper1.shidc.com:2181
+#===============================dubbo配置 end===============================
+
+
+
+#===============================redis配置 begin=============================
+#spring:
+#  redis:
+#    host: redis.linkun.com
+#    port: 6379
+#    password: linkun123
+#    database: 1
+#    timeout: 120000
+#    lettuce:
+#      pool:
+#        max-active: 50
+#        max-idle: 30
+#        min-idle: 10
+#        max-wait: 12000
+#===============================redis配置 end===============================
+

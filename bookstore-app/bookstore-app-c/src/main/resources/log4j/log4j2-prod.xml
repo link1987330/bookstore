@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+    <properties>
+        <property name="appName">bookstore-app-c</property>
+        <property name="appenderRef">file</property>
+        <property name="pattern">{"project":"${appName}","date":"%d{yyyy-MM-dd HH:mm:ss,SSS}","level":"%-5p","thread":"%t","class":"%c","requestId":"%X{requestId}","message":"%enc{%m}{JSON}%enc{%notEmpty{\n%xEx}}{JSON}"}%n</property>
+    </properties>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}" alwaysWriteExceptions="false"/>
+        </Console>
+
+        <RollingRandomAccessFile name="file"
+                                 fileName="/Users/linkun/logs/${appName}/${appName}.log"
+                                 filePattern="/Users/linkun/logs/${appName}/${appName}-%d{yyyy-MM-dd}.log.%i">
+            <PatternLayout>
+                <Pattern>${pattern}</Pattern>
+                <alwaysWriteExceptions>false</alwaysWriteExceptions>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="50"/>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+    <Loggers>
+        <AsyncRoot level="INFO" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncRoot>
+        <AsyncLogger name="com.linkun" level="DEBUG" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.springframework" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.apache.ibatis" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.mybatis" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.alibaba" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="java.sql" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.apache.dubbo" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.apache.zookeeper" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="io.netty" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="springfox" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.hibernate" level="INFO" additivity="false" includeLocation="true">
+            <AppenderRef ref="${appenderRef}"/>
+        </AsyncLogger>
+    </Loggers>
+
+</Configuration>
