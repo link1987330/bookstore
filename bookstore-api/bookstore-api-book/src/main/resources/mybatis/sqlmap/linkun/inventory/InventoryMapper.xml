@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linkun.api.inventory.mapper.InventoryMapper">
+
+    <update id="updateInvontoryWhenEnough" parameterType="map">
+         UPDATE t_inventory inventory
+         SET inventory.quantity = inventory.quantity - ${quantity}
+         WHERE inventory.book_id = ${bookId}
+         and inventory.defunct = 0
+         and inventory.quantity > ${quantity}
+    </update>
+</mapper>

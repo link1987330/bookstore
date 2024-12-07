@@ -1,9 +1,13 @@
 package com.linkun.api.order.remote;
 
+import com.linkun.api.inventory.dto.InventoryDto;
+import com.linkun.api.inventory.exception.InventoryException;
+import com.linkun.api.inventory.remote.IInventoryRemoteService;
 import com.linkun.api.order.dto.OrderDto;
 import com.linkun.api.order.dto.OrderItemDto;
 import com.linkun.api.order.exception.OrderException;
 import com.linkun.api.order.service.IOrderItemService;
+import com.linkun.inventory.model.Inventory;
 import com.linkun.order.model.Order;
 import com.linkun.api.order.service.IOrderService;
 
@@ -14,6 +18,7 @@ import java.util.stream.Collectors;
 
 import com.linkun.order.model.OrderItem;
 import com.linkun.utils.NumberUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,6 +37,8 @@ public class OrderRemoteService implements IOrderRemoteService {
     private IOrderService orderService;
     @Autowired
     private IOrderItemService orderItemService;
+    @Autowired
+    private IInventoryRemoteService inventoryRemoteService;
 
     @Override
     public Order getById(Long id) {
@@ -52,15 +59,23 @@ public class OrderRemoteService implements IOrderRemoteService {
     }
 
     @Override
-    public Order create(Long operatorId, OrderDto orderDto) throws OrderException {
+    public Order create(Long operatorId, OrderDto orderDto) throws OrderException, InventoryException {
         if (operatorId == null || orderDto == null || !orderDto.checkCreateParams()) {
             throw new OrderException(OrderException.ILLEGAL_PARAMS);
         }
 
-        List<Long> skuIdList = orderDto.getOrderItemDtos().stream().map(OrderItemDto::getId).collect(Collectors.toList());
+        List<Long> bookIdList = orderDto.getOrderItemDtos().stream().map(OrderItemDto::getId).collect(Collectors.toList());
+        List<InventoryDto> inventoryDtoList = orderDto.getOrderItemDtos().stream()
+                .map(orderItemDto -> new InventoryDto(orderItemDto.getId(), orderItemDto.getQuantity()))
+                .collect(Collectors.toList());
 
-        // 检测库存
+//        // 检测库存
+//        List<Long> lowStockBooks = inventoryRemoteService.checkLowStockBooks(inventoryDtoList);
+//        if(CollectionUtils.isNotEmpty(lowStockBooks)) {
+//
+//        }
         // 扣减库存
+        inventoryRemoteService.deductInventory(inventoryDtoList);
 
         // 创建订单
         Order order = orderService.createOrder(operatorId, orderDto);

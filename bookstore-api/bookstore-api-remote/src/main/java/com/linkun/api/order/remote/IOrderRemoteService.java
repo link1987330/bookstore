@@ -3,6 +3,7 @@ package com.linkun.api.order.remote;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import com.linkun.api.inventory.exception.InventoryException;
 import com.linkun.api.order.dto.OrderDto;
 import com.linkun.api.order.exception.OrderException;
 import com.linkun.order.model.Order;
@@ -34,7 +35,7 @@ public interface IOrderRemoteService {
     */
     void deleteById(@Min(1) @NotNull Long operatorId, @Min(1) @NotNull Long id);
 
-    Order create(Long operatorId, OrderDto orderDto) throws OrderException;
+    Order create(Long operatorId, OrderDto orderDto) throws OrderException, InventoryException;
 
     void cancelById(Long operatorId, Long id);
 }
