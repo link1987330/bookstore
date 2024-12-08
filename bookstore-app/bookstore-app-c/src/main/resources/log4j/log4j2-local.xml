@@ -27,7 +27,7 @@
         <AsyncRoot level="DEBUG" includeLocation="true">
             <AppenderRef ref="${appenderRef}"/>
         </AsyncRoot>
-        <AsyncLogger name="com.linglie" level="DEBUG" additivity="false" includeLocation="true">
+        <AsyncLogger name="com.linkun" level="DEBUG" additivity="false" includeLocation="true">
             <AppenderRef ref="${appenderRef}"/>
         </AsyncLogger>
         <AsyncLogger name="org.springframework" level="INFO" additivity="false" includeLocation="true">

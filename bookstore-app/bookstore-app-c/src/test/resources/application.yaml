@@ -6,7 +6,7 @@ spring:
   profiles:
     active: local
   messages:
-    basename: i18n/base/error_zh_CN,i18n/auth/error_zh_CN,i18n/company/error_zh_CN,i18n/company/info_zh_CN,i18n/saas/job/error_zh_CN,i18n/yun/recommend/error_zh_CN,i18n/yun/employee/error_zh_CN,i18n/yun/irecommend/error_zh_CN,i18n/yun/recommend/info_zh_CN
+    basename: i18n/user/error_zh_CN,i18n/auth/error_zh_CN
     encoding: UTF-8
 
   jackson:

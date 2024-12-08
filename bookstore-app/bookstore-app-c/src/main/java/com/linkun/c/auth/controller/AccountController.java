@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.linkun.api.auth.bean.AuthSession;
+import com.linkun.api.auth.dto.LoginDto;
 import com.linkun.api.auth.exception.AuthorizeException;
 import com.linkun.api.auth.exception.PassportException;
 import com.linkun.api.core.exception.BaseException;
@@ -79,17 +80,13 @@ public class AccountController extends BaseController {
     }
 
     @RequestMapping(value = "/v1/login", method = RequestMethod.POST)
-    public JsonResult<UserView> login(HttpServletRequest request, HttpServletResponse response,
-                                      @RequestParam(value = "account", required = true) String account,
-                                      @RequestParam(value = "authorizeCode", required = true) String authorizeCode,
-                                      @RequestParam(value = "isRememberLogin", required = false, defaultValue = "false") boolean isRememberLogin,
-                                      String imageCaptcha) throws BaseException, AuthorizeException {
-        AuthSession authSession = loginMethod(request, response, account, authorizeCode, isRememberLogin, imageCaptcha);
+    public JsonResult<UserView> login(HttpServletRequest request, @RequestBody LoginDto loginDto) throws BaseException, AuthorizeException {
+        AuthSession authSession = loginMethod(request, loginDto.getAccount(), loginDto.getAuthorizeCode(), loginDto.isRememberLogin());
         return new JsonResult<UserView>().success(usercService.getUserByUserId(Long.valueOf(authSession.getUserId())));
     }
 
-    private AuthSession loginMethod(HttpServletRequest request, HttpServletResponse response, String account,
-                                    String authorizeCode, boolean isRememberLogin, String imageCaptcha) throws BaseException, AuthorizeException {
+    private AuthSession loginMethod(HttpServletRequest request, String account,
+                                    String authorizeCode, boolean isRememberLogin) throws BaseException, AuthorizeException {
         AuthSession authSession = getSession(request);
         if (authSession == null) {
             logger.error("Login error. Session is null.");
@@ -103,7 +100,7 @@ public class AccountController extends BaseController {
         }
 
         authSession = authorizeSessionRemoteService.login(authSession.getSessionId(),
-                HttpRequestUtil.getRemoteIp(request), "/auth/v1/login", account, authorizeCode, isRememberLogin);
+                HttpRequestUtil.getRemoteIp(request), "/account/v1/login", account, authorizeCode, isRememberLogin);
         authSession.setLoginFails(0);
         authorizeSessionRemoteService.updateSession(authSession);
 
