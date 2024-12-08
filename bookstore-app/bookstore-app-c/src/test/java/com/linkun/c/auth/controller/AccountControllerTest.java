@@ -77,15 +77,16 @@ public class AccountControllerTest {
     public void loginTest() throws Exception {
         String account = "13795339533";
         String password = "e10adc3949ba59abbe56e057f20f883e";
+        String sessionId = "fc7045bfc9b74fb499c351554c467f60"; // 应该要改成调用link并从其结果中拿
+        String nonce = "c472447903299d84eece85b1904445a5"; // 应该要改成调用link并从其结果中拿
 
-
-        String authCode = this.generateAuthorizeCode(account, "BOOKSTORE_C", password, "/account/v1/login", "c472447903299d84eece85b1904445a5");
+        String authCode = this.generateAuthorizeCode(account, "BOOKSTORE_C", password, "/account/v1/login", nonce);
         LoginDto loginDto = new LoginDto();
         loginDto.setAccount(account);
         loginDto.setAuthorizeCode(authCode);
 
         String response = mockMvc.perform(post("/account/v1/login")
-                .header("accessToken", "fc7045bfc9b74fb499c351554c467f60")
+                .header("accessToken", sessionId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.toJson(loginDto)))
                 .andExpect(status().isOk())

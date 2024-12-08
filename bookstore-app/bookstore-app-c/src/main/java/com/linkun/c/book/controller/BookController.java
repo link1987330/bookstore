@@ -38,8 +38,8 @@ public class BookController extends BaseController {
      * @throws NeedLoginException
      */
     @GetMapping("/{id}")
-    @RequestMapping(value = "get", method = RequestMethod.GET)
-    public JsonResult<BookView> add(HttpServletRequest request, @PathVariable Long id)
+    @RequestMapping(method = RequestMethod.GET)
+    public JsonResult<BookView> getById(HttpServletRequest request, @PathVariable Long id)
             throws NeedLoginException {
         Long userId = checkLogin(request);
 

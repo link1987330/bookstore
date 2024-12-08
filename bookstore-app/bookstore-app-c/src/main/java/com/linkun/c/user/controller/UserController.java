@@ -21,14 +21,14 @@ public class UserController extends BaseController {
     private IUsercService usercService;
 
     /**
-     * 查询用户信息
+     * 查询当前用户信息
      *
      * @param request
      * @return
      * @throws NeedLoginException
      */
-    @RequestMapping(value = "v1/info", method = RequestMethod.GET)
-    public JsonResult<UserView> add(HttpServletRequest request)
+    @RequestMapping(method = RequestMethod.GET)
+    public JsonResult<UserView> userInfo(HttpServletRequest request)
             throws NeedLoginException {
         Long userId = checkLogin(request);
 
