@@ -30,8 +30,7 @@ spring:
 
 #===============================连接池配置 begin=============================
   datasource:
-#    url: jdbc:mysql://dphzmy-j9plohtrbtu3hmen-pub.proxy.dms.aliyuncs.com:3306/bookstore?autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=GMT%2B8
-    url: jdbc:mysql://127.0.0.1:3306/bookstore?autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://dphzmy-j9plohtrbtu3hmen-pub.proxy.dms.aliyuncs.com:3306/bookstore?autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=GMT%2B8
     username: kIfE9BDHUBKSk9lGgruxQ9Q4
     password: s3XAPWO0gYEKr3Yh1RZo6EAhHSpPNL
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -69,5 +68,4 @@ logging:
 
 free:
   url:
-    regex:
-    urls: "account/v1/register;account/v1/link;account/v1/login"
+    regex: "account/v1/register;account/v1/link;account/v1/login"
