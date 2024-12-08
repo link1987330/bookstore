@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.linkun.c.book.service.IBookService;
+import com.linkun.c.book.service.IBookcService;
 import com.linkun.c.book.view.BookView;
 import com.linkun.c.core.controller.BaseController;
 import com.linkun.c.core.exception.NeedLoginException;
@@ -28,7 +28,7 @@ import com.linkun.response.JsonResult;
 public class BookController extends BaseController {
 
     @Autowired
-    private IBookService bookService;
+    private IBookcService bookcService;
 
     /**
      * 查询用户信息
@@ -43,14 +43,14 @@ public class BookController extends BaseController {
             throws NeedLoginException {
         Long userId = checkLogin(request);
 
-        return new JsonResult<BookView>().success(bookService.getBookViewById(id));
+        return new JsonResult<BookView>().success(bookcService.getBookViewById(id));
     }
 
     @PostMapping
     public JsonResult<Book> createBook(HttpServletRequest request, @RequestBody BookDto book)
             throws NeedLoginException, BookException {
         Long userId = checkLogin(request);
-        return new JsonResult<Book>().success(bookService.create(userId, book));
+        return new JsonResult<Book>().success(bookcService.create(userId, book));
     }
 
     @PutMapping("/{id}")
@@ -58,7 +58,7 @@ public class BookController extends BaseController {
             throws NeedLoginException, BookException {
         Long userId = checkLogin(request);
         book.setId(id);
-        bookService.modify(userId, book);
+        bookcService.modify(userId, book);
         return JsonResult.success();
     }
 
@@ -68,7 +68,7 @@ public class BookController extends BaseController {
             throws NeedLoginException, BookException {
         Long userId = checkLogin(request);
 
-        bookService.deleteById(userId, id);
+        bookcService.deleteById(userId, id);
 
         return JsonResult.success();
     }

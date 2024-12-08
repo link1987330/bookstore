@@ -1,9 +1,7 @@
 package com.linkun.c.user.service.impl;
 
-import java.util.Objects;
-
 import com.linkun.api.user.remote.IUserRemoteService;
-import com.linkun.c.user.service.IUserService;
+import com.linkun.c.user.service.IUsercService;
 import com.linkun.c.user.view.UserView;
 import com.linkun.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class UserService implements IUserService {
+public class UsercService implements IUsercService {
 
     @Autowired
     private IUserRemoteService userRemoteService;

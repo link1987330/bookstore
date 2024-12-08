@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.linkun.c.core.controller.BaseController;
 import com.linkun.c.core.exception.NeedLoginException;
-import com.linkun.c.order.service.IOrderService;
+import com.linkun.c.order.service.IOrdercService;
 import com.linkun.c.order.view.OrderView;
 import com.linkun.response.JsonResult;
 
@@ -31,7 +31,7 @@ import com.linkun.response.JsonResult;
 public class OrderController extends BaseController {
 
     @Autowired
-    private IOrderService orderService;
+    private IOrdercService ordercService;
     @Autowired
     private IInventoryRemoteService inventoryRemoteService;
 
@@ -51,7 +51,7 @@ public class OrderController extends BaseController {
             return result;
         }
 
-        return new JsonResult<OrderView>().success(orderService.create(userId, orderDto));
+        return new JsonResult<OrderView>().success(ordercService.create(userId, orderDto));
     }
 
     @PostMapping("/{id}")
@@ -59,7 +59,7 @@ public class OrderController extends BaseController {
             throws NeedLoginException, BookException {
         Long userId = checkLogin(request);
 
-        orderService.cancelById(userId, id);
+        ordercService.cancelById(userId, id);
 
         return JsonResult.success();
     }

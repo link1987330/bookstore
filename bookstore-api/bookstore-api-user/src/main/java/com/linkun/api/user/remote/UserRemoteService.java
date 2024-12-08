@@ -12,10 +12,10 @@ import com.linkun.api.user.service.IUserService;
 import java.util.Date;
 import com.linkun.utils.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -75,6 +75,10 @@ public class UserRemoteService implements IUserRemoteService {
 
         User user = new User();
         userDto.forwardConvert(user);
+        user.setCreateTime(new Date());
+        user.setCreateUserId(0L);
+        user.setUpdateUserId(0L);
+        user.setUpdateTime(user.getCreateTime());
 
         userService.save(user);
         passportRemoteService.create(user.getPhone(), userDto.getPassword(), UserTypeEnum.BOOKSTORE_C);

@@ -2,7 +2,7 @@ package com.linkun.c.user.service;
 
 import com.linkun.c.user.view.UserView;
 
-public interface IUserService {
+public interface IUsercService {
 
     /**
      * 根据用户id（hr的id）获取HR信息

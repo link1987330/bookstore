@@ -18,9 +18,8 @@ import java.util.stream.Collectors;
 
 import com.linkun.order.model.OrderItem;
 import com.linkun.utils.NumberUtils;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>

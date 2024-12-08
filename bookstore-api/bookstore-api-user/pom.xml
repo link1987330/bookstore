@@ -40,6 +40,11 @@
             <artifactId>bookstore-base</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.linkun</groupId>
+            <artifactId>bookstore-api-auth</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

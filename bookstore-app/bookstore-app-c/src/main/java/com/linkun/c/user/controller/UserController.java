@@ -3,7 +3,7 @@ package com.linkun.c.user.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.linkun.c.core.controller.BaseController;
-import com.linkun.c.user.service.IUserService;
+import com.linkun.c.user.service.IUsercService;
 import com.linkun.c.user.view.UserView;
 import com.linkun.c.core.exception.NeedLoginException;
 import com.linkun.response.JsonResult;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController extends BaseController {
 
     @Autowired
-    private IUserService userService;
+    private IUsercService usercService;
 
     /**
      * 查询用户信息
@@ -32,7 +32,7 @@ public class UserController extends BaseController {
             throws NeedLoginException {
         Long userId = checkLogin(request);
 
-        return new JsonResult<UserView>().success(userService.getUserByUserId(userId));
+        return new JsonResult<UserView>().success(usercService.getUserByUserId(userId));
     }
 
 }

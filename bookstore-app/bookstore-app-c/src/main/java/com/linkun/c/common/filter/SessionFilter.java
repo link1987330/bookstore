@@ -2,6 +2,7 @@ package com.linkun.c.common.filter;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,8 +43,8 @@ public class SessionFilter implements Filter {
     public static final String AUTH_SESSION = "authSession";
 
     private Set<Pattern> freeURIRegexPatternSet;
-    @Value("${free.url.regex}")
-    private String[] freeURIRegexSet;
+//    @Value("${free.url.regex:account/v1/register;account/v1/link;account/v1/login}")
+    private String freeURIRegex = "account/v1/register;account/v1/link;account/v1/login";
     @Autowired
     private MessageSource messageSource;
     @Autowired
@@ -59,6 +60,7 @@ public class SessionFilter implements Filter {
     @PostConstruct
     public void postConstruct() {
         freeURIRegexPatternSet = new HashSet<>();
+        String[] freeURIRegexSet = freeURIRegex.split(";");
         for (String regex : freeURIRegexSet) {
             if (StringUtils.isBlank(regex)) {
                 continue;

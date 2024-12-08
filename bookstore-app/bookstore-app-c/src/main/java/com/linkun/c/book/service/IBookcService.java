@@ -5,7 +5,7 @@ import com.linkun.api.book.exception.BookException;
 import com.linkun.book.model.Book;
 import com.linkun.c.book.view.BookView;
 
-public interface IBookService {
+public interface IBookcService {
 
     BookView getBookViewById(Long id);
 

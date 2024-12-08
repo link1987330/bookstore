@@ -14,13 +14,14 @@ import com.linkun.api.user.dto.UserDto;
 import com.linkun.api.user.exception.UserException;
 import com.linkun.api.user.remote.IUserRemoteService;
 import com.linkun.c.core.controller.BaseController;
-import com.linkun.c.user.service.IUserService;
+import com.linkun.c.user.service.IUsercService;
 import com.linkun.c.user.view.UserView;
 import com.linkun.response.JsonResult;
 import com.linkun.utils.HttpRequestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +37,7 @@ public class AccountController extends BaseController {
     @Autowired
     private IUserRemoteService userRemoteService;
     @Autowired
-    private IUserService userService;
+    private IUsercService usercService;
 
     /**
      * 登陆前验证
@@ -63,20 +64,9 @@ public class AccountController extends BaseController {
      * 
      * 注册
      *
-     * @param name 姓名
-     * @param phone 手机
-     * @param password 密码
      */
     @RequestMapping(value = "v1/register", method = RequestMethod.POST)
-    public JsonResult register(HttpServletRequest request,
-                               @RequestParam(value = "username") String name,
-                               @RequestParam(value = "phone") String phone,
-                               @RequestParam(value = "password") String password) {
-
-        UserDto userDto = new UserDto();
-        userDto.setUsername(name);
-        userDto.setPassword(password);
-        userDto.setPhone(phone);
+    public JsonResult register(HttpServletRequest request, @RequestBody UserDto userDto) {
 
         try {
             userRemoteService.regist(userDto);
@@ -95,7 +85,7 @@ public class AccountController extends BaseController {
                                       @RequestParam(value = "isRememberLogin", required = false, defaultValue = "false") boolean isRememberLogin,
                                       String imageCaptcha) throws BaseException, AuthorizeException {
         AuthSession authSession = loginMethod(request, response, account, authorizeCode, isRememberLogin, imageCaptcha);
-        return new JsonResult<UserView>().success(userService.getUserByUserId(Long.valueOf(authSession.getUserId())));
+        return new JsonResult<UserView>().success(usercService.getUserByUserId(Long.valueOf(authSession.getUserId())));
     }
 
     private AuthSession loginMethod(HttpServletRequest request, HttpServletResponse response, String account,

@@ -23,6 +23,21 @@
             <artifactId>bookstore-api-remote</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.linkun</groupId>
+            <artifactId>bookstore-api-user</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.linkun</groupId>
+            <artifactId>bookstore-api-book</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.linkun</groupId>
+            <artifactId>bookstore-api-order</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!--Spring 基础依赖  start-->
         <dependency>

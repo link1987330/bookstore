@@ -5,7 +5,7 @@ import com.linkun.api.order.dto.OrderDto;
 import com.linkun.api.order.exception.OrderException;
 import com.linkun.c.order.view.OrderView;
 
-public interface IOrderService {
+public interface IOrdercService {
 
     OrderView getOrderViewById(Long id);
 

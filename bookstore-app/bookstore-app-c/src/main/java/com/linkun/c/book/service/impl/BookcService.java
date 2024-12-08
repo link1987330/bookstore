@@ -7,12 +7,12 @@ import com.linkun.book.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.linkun.c.book.service.IBookService;
+import com.linkun.c.book.service.IBookcService;
 import com.linkun.c.book.view.BookView;
 
 
 @Service
-public class BookService implements IBookService {
+public class BookcService implements IBookcService {
 
     @Autowired
     private IBookRemoteService bookRemoteService;
