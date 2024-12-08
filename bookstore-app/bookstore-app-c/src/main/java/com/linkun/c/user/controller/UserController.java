@@ -27,7 +27,6 @@ public class UserController extends BaseController {
      * @return
      * @throws NeedLoginException
      */
-    // @Behavior
     @RequestMapping(value = "v1/info", method = RequestMethod.GET)
     public JsonResult<UserView> add(HttpServletRequest request)
             throws NeedLoginException {

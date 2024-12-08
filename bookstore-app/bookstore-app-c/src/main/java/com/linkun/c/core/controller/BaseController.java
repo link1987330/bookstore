@@ -3,13 +3,13 @@ package com.linkun.c.core.controller;
 import javax.servlet.http.HttpServletRequest;
 import com.linkun.api.auth.enums.PlatformSystemEnum;
 import com.linkun.api.auth.remote.IAuthorizeSessionRemoteService;
+import com.linkun.api.core.exception.BaseException;
 import com.linkun.utils.HttpRequestUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.linkun.api.auth.bean.AuthSession;
 import com.linkun.c.core.exception.NeedLoginException;
-import com.linkun.c.core.exception.BaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 
