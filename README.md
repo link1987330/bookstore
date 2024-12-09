@@ -74,3 +74,9 @@ Jar包的版本控制应在根目录的`pom.xml`文件中通过`dependencyManage
 - 注册登录（auth）
 
 其他功能的测试用例尚未完成。测试用例代码位于`bookstore -> bookstore-app -> bookstore-app-c -> src/test`目录下。
+
+## 九、打包发布
+
+- 1.当前真正可打包发布的是bookstore-app-c项目，它的pom.xml中引入了其它所有基础模块以及api模块。
+- 2.通过在bookstore根目录下执行mvn clean package可进行打包，完成后将bookstore-app-c的target目录下的 bookstore-app-c.jar 拷贝出来进行部署，使用的默认tomcat端口号8080
+- 3.当前bookstore-app-c的application.yaml文件中配置的spring.profiles.active写死为local，影响的是log4j.xml文件生效情况，local：控制台输出日志，prod：文件形式输出到/Users/linkun/logs/${appName}/${appName}.log 。可通过bookstore-app-c -> src -> resource -> log4j -> log4j2-prod.xml 修改文件输出位置。
