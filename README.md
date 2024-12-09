@@ -14,18 +14,20 @@
   - 负责核心业务的处理。
   - **注意**：API层被拆分为多个jar包，以便在业务初期能够灵活调整。初期可以将多个模块整合到一个微服务中部署，节省服务器资源和运维工作量。随着业务扩展，不同模块可直接各自进行微服务部署，提高服务可用性。拆分服务时，只需将`remote`目录下的实现类中的`@Service`注解更改为Dubbo注解，并在配置文件中增加Dubbo和Zookeeper的配置。
 
-## 项目结构
+项目结构图示：
+
+
 bookstore
 ├── bookstore-base
 ├── bookstore-app
-│   └── bookstore-app-c // 构建为服务
+│ └── bookstore-app-c // build as a service
 ├── bookstore-api
-│   ├── bookstore-api-remote
-│   ├── bookstore-api-user
-│   ├── bookstore-api-auth
-│   ├── bookstore-api-book
-│   └── bookstore-api-order
-│       ...
+│ ├── bookstore-api-remote
+│ ├── bookstore-api-user
+│ ├── bookstore-api-auth
+│ ├── bookstore-api-book
+│ └── bookstore-api-order
+│ ...
 
 
 ## 二、公共基础模块
