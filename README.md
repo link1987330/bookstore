@@ -30,3 +30,10 @@ bookstore
 
 六、项目sql存在于bookstore -> sql 目录下，数据库当前连接的阿里云RDS云数据库，代码中使用的公网地址访问，无需修改。
 
+七、项目版本说明：当前项目技术选型的第一优先级是以短期内能完成项目研发为第一目的，所以很多技术版本都不是最新流行版本；在生产环境中springboot、jdk、mybatis、redis等等版本均需要参考当前最新版本、
+   版本之间的依赖、技术部门当前技术选型、未来业务扩展情况等来决定。
+   当前版本号：jdk1.8、mysql5.7、springboot 2.3.1.RELEASE、redis 6.2.6
+
+八、代码完成情况说明，当前完成的功能包括：用户信息管理（user）、注册登录（auth）、图书管理（book）、库存管理（api在book下的inventory中）、订单管理（order）。
+   测试用例完成了：用户信息管理（user）、注册登录（auth），其它未完成。
+   测试用例代码位置：bookstore -> bookstore-app -> bookstore-app-c -> src/test
